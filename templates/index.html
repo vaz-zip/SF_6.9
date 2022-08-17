@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+
+    <style type="text/css">
+
+        body{
+            margin: 0;
+		    background: linear-gradient(90deg, rgb(224, 225, 225) 0%, rgb(175, 238, 238) 43%);
+        }
+
+      .topnav{
+        background-color:#69a6aa;
+        overflow: hidden;
+      }
+
+      .topnav a{
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      .topnav a:hover{
+          background-color: #ddd;
+          color: black;
+      }
+
+      .topnav a.active{
+          background-color: #525252;
+          color: white;
+      }
+
+      .topnav a.edit{
+          background-color: #525252;
+          color: white;
+          float: right;
+      }
+
+      .topnav a.logout{
+          background-color: #af8d8d;
+          color: white;
+          float: right;
+      }
+
+      .card {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          width: 55%;
+      }
+
+      .content {
+          display: flex;
+          justify-content: center;
+          padding: 10px;
+      }
+
+    </style>
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="{% url 'my_account' %}">Главная</a>
+        <a href="{% url 'person_list' %}">Чаты</a>
+        <a href="{% url 'select_room' %}">Войти в чат</a>
+    </div>
+
+    <div class="content">
+    <div class="card">
+      <img src="{{ person.picture.url }}" alt="Avatar" style="width:100%">
+      <div class="topnav">
+        <a href="{% url 'my_account' %}">{{ person.name }}</a>
+        <a class="logout" href="/accounts/logout">Выход</a>
+        <a class="edit" href="{% url 'person_update' person.id %}">Редактировать профиль</a>
+      </div>
+    </div>
+    </div>
+
+</body>
+</html>

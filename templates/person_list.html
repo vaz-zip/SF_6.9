@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Чаты</title>
+
+    <style type="text/css">
+        body{
+            margin: 0;
+		    background: linear-gradient(90deg, rgb(224, 225, 225) 0%, rgb(175, 238, 238) 43%);
+        }
+
+      .topnav{
+        background-color:#69a6aa;
+        overflow: hidden;
+      }
+
+      .topnav a{
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      .topnav a:hover{
+          background-color: #ddd;
+          color: black;
+      }
+
+      .topnav a.active{
+          background-color: #525252;
+          color: white;
+      }
+
+      .container{
+          margin: auto;
+          width: 70%;
+          padding: 10px;
+      }
+
+      .frame{
+          background-color: #dddddd;
+          height: 60px;
+          margin: 20px;
+          text-align: center;
+          line-height: 60px;
+      }
+
+      .frame img{
+          float: left;
+          height: 60px;
+          width: 60px;
+          object-fit: cover;
+      }
+      .frame p{
+          float: left;
+          height: 60px;
+          vertical-align: middle;
+      }
+
+      .frame a.message{
+          float: right;
+          height: 60px;
+          background-color: #525252;
+          color: #dddddd;
+          text-decoration: none;
+          padding-right: 10px;
+          padding-left: 10px;
+          vertical-align: middle;
+      }
+
+      .frame a.message:hover{
+          background-color: #97b37b;
+          color: #000000;
+      }
+
+      .frame a.name{
+          float: left;
+          height: 60px;
+          color: #FF0000;
+          font-size: 20px;
+          text-decoration: none;
+          padding-right: 10px;
+          padding-left: 10px;
+          vertical-align: middle;
+          pointer-events: none;
+          cursor: default;
+      }
+
+    </style>
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="{% url 'my_account' %}">Главная</a>
+        <a href="{% url 'person_list' %}">Чаты</a>
+        <a href="{% url 'select_room' %}">Войти в чат</a>
+    </div>
+
+    <div class="container">
+    {% for person in person_list %}
+        <div class="frame">
+            <img src="{{ person.picture.url }}">
+            <a class="name" href="{% url 'my_account' %}">{{ person.name }}</a>
+            <a class="message" href="{% url 'room_view' person.user.id %}">Отправить</a>
+        </div>
+    {% endfor %}
+    </div>
+</body>
+</html>
