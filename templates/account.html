@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Аккаунт</title>
+
+    <style type="text/css">
+      .topnav{
+        background-color: #333;
+        overflow: hidden;
+      }
+
+      .topnav a{
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+    </style>
+</head>
+<body>
+  <div class="topnav">
+    <a class="active" href="{% url 'my_account' %}">Главная</a>
+        <a href="{% url 'person_list' %}">Чаты</a>
+        <a href="{% url 'select_room' %}">Войти в чат</a>
+  </div>
+
+  <h3>Name: {{ person.name }}</h3>
+  <img src="{{ person.picture.url }}">
+  <a href="{% url 'person_update' person.id %}">Изменить профиль</a>
+
+</body>
+</html>
